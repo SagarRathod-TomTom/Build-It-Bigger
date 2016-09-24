@@ -5,4 +5,7 @@ package com.sagarrathod.commons;
  */
 
 public class Utils {
+
+    public static final String INTENT_JOKE_EXTRA = "joke";
+
 }
