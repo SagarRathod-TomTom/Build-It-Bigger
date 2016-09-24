@@ -1,16 +1,19 @@
 package com.sagarrathod.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.sagarrathod.andlib.DisplayActivity;
+import com.sagarrathod.commons.Utils;
 import com.sagarrathod.jokes.Jokes;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view) {
-
-        Toast.makeText(this, Jokes.getFirstJoke(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, DisplayActivity.class);
+        intent.putExtra(Utils.INTENT_JOKE_EXTRA, Jokes.getFirstJoke());
+        startActivity(intent);
+        //Toast.makeText(this, Jokes.getFirstJoke(), Toast.LENGTH_SHORT).show();
     }
-
 
 }
