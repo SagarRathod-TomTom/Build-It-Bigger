@@ -1,1 +1,1 @@
-include ':app', ':javajokes', ':andlib', ':commons'
+include ':app', ':javajokes', ':andlib', ':commons', ':backend'
