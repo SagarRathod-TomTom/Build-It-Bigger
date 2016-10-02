@@ -6,14 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
-import com.sagarrathod.andlib.DisplayActivity;
-import com.sagarrathod.commons.Utils;
-import com.sagarrathod.jokes.Jokes;
-
 
 public class MainActivity extends AppCompatActivity {
+
+    private EndpointsAsyncTask endpointsAsyncTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Intent intent = new Intent(this, DisplayActivity.class);
-        intent.putExtra(Utils.INTENT_JOKE_EXTRA, Jokes.getFirstJoke());
-        startActivity(intent);
-        //Toast.makeText(this, Jokes.getFirstJoke(), Toast.LENGTH_SHORT).show();
+       //Toast.makeText(this, Jokes.getFirstJoke(), Toast.LENGTH_SHORT).show();
+
+        endpointsAsyncTask = new EndpointsAsyncTask(this);
+        endpointsAsyncTask.execute("joke");
     }
 
 }

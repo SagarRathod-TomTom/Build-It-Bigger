@@ -2,8 +2,10 @@ package com.sagarrathod.andlib;
 
 import android.content.Intent;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.sagarrathod.commons.Utils;
@@ -26,6 +28,11 @@ public class DisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
 
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         ButterKnife.bind(this);
 
         //initialize the view
@@ -38,6 +45,7 @@ public class DisplayActivity extends AppCompatActivity {
      */
     private void init(Intent intent){
         if(intent != null) {
+
             String joke = intent.getStringExtra(Utils.INTENT_JOKE_EXTRA);
             textView.setText(joke);
         }
@@ -51,6 +59,17 @@ public class DisplayActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         init(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
