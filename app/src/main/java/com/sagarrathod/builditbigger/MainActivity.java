@@ -7,7 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.sagarrathod.andlib.DisplayActivity;
+import com.sagarrathod.commons.Utils;
+
+public class MainActivity extends AppCompatActivity implements ResultCallbackListener{
 
     private EndpointsAsyncTask endpointsAsyncTask = null;
 
@@ -47,4 +50,12 @@ public class MainActivity extends AppCompatActivity {
         endpointsAsyncTask.execute("joke");
     }
 
+    @Override
+    public void resultCallback(String response) {
+
+        Intent intent = new Intent(this, DisplayActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(Utils.INTENT_JOKE_EXTRA, response);
+        startActivity(intent);
+    }
 }

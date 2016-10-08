@@ -3,6 +3,7 @@ package com.sagarrathod.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.samsung.builditbigger.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -20,11 +21,12 @@ import java.io.IOException;
 
 public class EndpointsAsyncTask extends AsyncTask<String,Void, String> {
 
+    private final String LOG_TAG = EndpointsAsyncTask.class.getSimpleName();
     private static MyApi myApiService = null;
-    private Context mContext;
+    private ResultCallbackListener resultCallbackListener;
 
-    public EndpointsAsyncTask(Context context){
-        this.mContext = context;
+    public EndpointsAsyncTask(ResultCallbackListener resultCallbackListener) {
+        this.resultCallbackListener = resultCallbackListener;
     }
 
     @Override
@@ -52,17 +54,13 @@ public class EndpointsAsyncTask extends AsyncTask<String,Void, String> {
             return myApiService.sayHi(name).execute().getData();
         } catch (IOException e) {
             return e.getMessage();
-
         }
     }
-
 
     @Override
     protected void onPostExecute(String jokeText) {
 
-        Intent intent = new Intent(mContext, DisplayActivity.class);
-        intent.putExtra(Utils.INTENT_JOKE_EXTRA, jokeText);
-        mContext.startActivity(intent);
-
+        resultCallbackListener.resultCallback(jokeText);
     }
+
 }
