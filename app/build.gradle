@@ -21,8 +21,8 @@ android {
         }
     }
 
-    productFlavors{
-        free{
+    productFlavors {
+        free {
             applicationId "com.sagarrathod.builditbigger.free"
         }
 
@@ -38,7 +38,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     // Added for AdMob
-    compile 'com.google.android.gms:play-services-ads:9.6.1'
+    freeCompile 'com.google.android.gms:play-services-ads:9.6.1'
 
     //Sub-projects
     compile project(':commons')
@@ -97,8 +97,10 @@ dependencies {
     androidTestCompile 'com.android.support:support-annotations:24.2.1'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test:rules:0.5'
-
 }
+
+
+
 
 
 configurations.all {
