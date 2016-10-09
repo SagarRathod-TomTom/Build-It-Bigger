@@ -1,3 +1,6 @@
+
+description = 'The Build it Bigger Android App module.'
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 

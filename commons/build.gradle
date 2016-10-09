@@ -1,3 +1,6 @@
+
+description = 'The Build it Bigger Java library for sharing common code across modules.'
+
 apply plugin: 'java'
 
 dependencies {

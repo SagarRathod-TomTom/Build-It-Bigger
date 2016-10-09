@@ -1,6 +1,8 @@
 // If you would like more information on the gradle-appengine-plugin please refer to the github page
 // https://github.com/GoogleCloudPlatform/gradle-appengine-plugin
 
+description = 'The Build it Bigger Google Cloud Endpoint module deployable on Google App Engine.'
+
 buildscript {
     repositories {
         jcenter()

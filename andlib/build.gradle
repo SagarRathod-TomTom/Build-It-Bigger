@@ -1,3 +1,6 @@
+
+description = 'The Build It Bigger Android library Module for displaying jokes.'
+
 apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
 // added for butter knife support in android library project
