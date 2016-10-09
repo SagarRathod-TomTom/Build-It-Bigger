@@ -28,3 +28,20 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+task startAppEngine( dependsOn : [':backend:appengineRun'])<< {
+    println '-- Started GCE Local development Server --'
+}
+
+task runAllTest( dependsOn: [ ':app:check']) << {
+    println '-- All test cases executed. --'
+}
+
+task stopAppEngine( dependsOn: ['backend:appengineStop']) <<{
+    println '-- Stopped GCE Local development Server --'
+}
+
+task runAllTask(dependsOn: [startAppEngine, runAllTest, stopAppEngine]) << {
+    println '-- All custom task executed --'
+}
