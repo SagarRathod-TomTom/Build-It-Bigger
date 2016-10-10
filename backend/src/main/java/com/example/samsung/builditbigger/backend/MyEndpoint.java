@@ -15,7 +15,10 @@ import com.sagarrathod.jokes.Jokes;
 import javax.inject.Named;
 
 /**
- * An endpoint class we are exposing
+ * @author Sagar Rathod
+ * @version 1.0
+ *
+ * Cloud endpoint for getting joke.
  */
 @Api(
         name = "myApi",
@@ -29,7 +32,8 @@ import javax.inject.Named;
 public class MyEndpoint {
 
     /**
-     * A simple endpoint method that takes a name and says Hi back
+     * A simple endpoint method that takes a name and sends back the
+     * delicious joke.
      */
     @ApiMethod(name = "sayHi")
     public MyBean sayHi(@Named("name") String name) {

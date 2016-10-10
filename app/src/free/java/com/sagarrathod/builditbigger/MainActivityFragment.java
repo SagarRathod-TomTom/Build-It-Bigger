@@ -20,7 +20,11 @@ import butterknife.ButterKnife;
 
 
 /**
- * A placeholder fragment containing a simple view.
+ * @author Sagar Rathod
+ * @version 1.0
+ *
+ * Displays the Admob ads on free version.
+ *
  */
 public class MainActivityFragment extends Fragment implements View.OnClickListener{
 
@@ -35,6 +39,15 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
     public MainActivityFragment() {
     }
 
+    /**
+     * Inflates the layout and creates the instance of Admob
+     * interstitial ad and banner ads.
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,8 +66,13 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
         mAdView.loadAd(adRequest);
         loadInterstitialAdRequest();
 
+        // interstitial ad event handler
         mInterstitialAd.setAdListener(new AdListener() {
 
+            /**
+             * Calls the parent activity callback method.
+             * and initializes the new interstitial ad request.
+             */
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
@@ -62,26 +80,40 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
                 if(mFragmentCallback != null){
                     mFragmentCallback.fragmentCallback();
                 }
-
                 loadInterstitialAdRequest();
             }
-
         });
         return root;
     }
 
+    /**
+     * Registers the tell joke button click listener.
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mTellJokeButton.setOnClickListener(this);
     }
 
+    /**
+     * Setter method for mFragmentCallback.
+     *
+     * @param mFragmentCallback
+     */
     public void setFragmentCallback(FragmentCallback mFragmentCallback) {
         this.mFragmentCallback = mFragmentCallback;
     }
 
+    /**
+     * On click event handler for tell joke button.
+     * Shows the interstitial ad if it is loaded otherwise
+     * delegates the control to parent activity.
+     *
+     * @param view
+     */
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
 
         if(mInterstitialAd.isLoaded()){
             mInterstitialAd.show();
@@ -92,6 +124,9 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
         }
     }
 
+    /**
+     * Constructs new interstitial ad request.
+     */
     private void loadInterstitialAdRequest(){
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)

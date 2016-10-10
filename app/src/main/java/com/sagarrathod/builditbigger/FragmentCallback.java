@@ -1,9 +1,12 @@
 package com.sagarrathod.builditbigger;
 
 /**
- * Created by samsung on 10-Oct-2016.
+ * @author Sagar Rathod
+ * @version 1.0
+ *
+ * Fragment callback for parent activity.
  */
 
 public interface FragmentCallback {
-    public void fragmentCallback();
+    void fragmentCallback();
 }

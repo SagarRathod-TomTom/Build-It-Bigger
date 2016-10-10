@@ -1,11 +1,12 @@
 package com.sagarrathod.commons;
 
 /**
- * Created by samsung on 24-Sep-2016.
+ * @author Sagar Rathod
+ * @version 1.0
+ *
+ * Contains the common code that is shared across modules.
+ *
  */
-
 public class Utils {
-
     public static final String INTENT_JOKE_EXTRA = "joke";
-
 }

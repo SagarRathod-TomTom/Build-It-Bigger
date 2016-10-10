@@ -1,6 +1,7 @@
 package com.sagarrathod.builditbigger;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -13,7 +14,11 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import java.io.IOException;
 
 /**
- * Created by samsung on 01-Oct-2016.
+ *
+ * @author Sagar Rathod
+ * @version 1.0
+ *
+ * Retrieves the joke from google cloud endpoint.
  */
 
 public class EndpointsAsyncTask extends AsyncTask<String,Void, String> {
@@ -22,19 +27,40 @@ public class EndpointsAsyncTask extends AsyncTask<String,Void, String> {
     private static MyApi myApiService = null;
     private ResultCallbackListener resultCallbackListener;
     private ProgressBar mProgressBar;
+    private final String EMPTY_STRING = "";
 
+    /**
+     *  Initializes resultCallbackListener and progress bar.
+     *
+     * @param resultCallbackListener
+     * @param progressBar
+     */
     public EndpointsAsyncTask(ResultCallbackListener resultCallbackListener,
                               ProgressBar progressBar) {
+
+        if(resultCallbackListener == null)
+            throw new NullPointerException("ResultCallbackListener is required.");
+
         this.resultCallbackListener = resultCallbackListener;
         this.mProgressBar = progressBar;
     }
 
+    /**
+     * Makes the progress indicator visible.
+     */
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mProgressBar.setVisibility(View.VISIBLE);
+        if(mProgressBar != null)
+            mProgressBar.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Fetches the joke from google cloud endpoint using client api.
+     *
+     * @param params
+     * @return
+     */
     @Override
     protected String doInBackground(String... params) {
         String rootUrl = "https://tactile-acrobat-144517.appspot.com/_ah/api/";
@@ -60,13 +86,23 @@ public class EndpointsAsyncTask extends AsyncTask<String,Void, String> {
         try {
             return myApiService.sayHi(name).execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            Log.e(LOG_TAG, e.getMessage());
         }
+
+        return EMPTY_STRING;
     }
 
+    /**
+     * Makes the progress indicator invisible and delegates the
+     * control to result callback handler.
+     *
+     * @param jokeText
+     */
     @Override
     protected void onPostExecute(String jokeText) {
-        mProgressBar.setVisibility(View.GONE);
+        if(mProgressBar != null)
+            mProgressBar.setVisibility(View.GONE);
+
         resultCallbackListener.resultCallback(jokeText);
     }
 

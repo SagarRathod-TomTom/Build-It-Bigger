@@ -1,11 +1,6 @@
 package com.sagarrathod.jokes;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,13 +8,20 @@ import java.util.Random;
 /**
  * @author Sagar Rathod
  * @version 1.0
+ *
+ * Java Joke API to provide the random jokes.
+ *
  */
-
 public class Jokes {
 
+    // list of jokes
     static private List<String> jokes = new ArrayList<String>();
+
     static private Random randomNumGenegrator = new Random();
+
+    //Singleton instance
     private static Jokes jokesInstance = new Jokes();
+
     String firstJoke = "The Perfect Son. \n" +
             "A: I have the perfect son. \n" +
             "B: Does he smoke? \n" +
@@ -85,6 +87,9 @@ public class Jokes {
             "Teacher: Of course, you do. Where do you get sugar from? \n" +
             "Student: We borrow it from our neighbor.";
 
+    /**
+     * Creates the lhe list of predefined jokes.
+     */
     private Jokes() {
         jokes.add(firstJoke);
         jokes.add(secondJoke);
@@ -98,12 +103,19 @@ public class Jokes {
         jokes.add(tenthJoke);
     }
 
+    /**
+     * Returns the singleton instance.
+     * @return
+     */
     public static Jokes getInstance() {
         return jokesInstance;
     }
 
+    /**
+     * Returns the random joke from the list of predefined jokes.
+     * @return
+     */
     public String getRandomJoke() {
-
         int randomJoke = randomNumGenegrator.nextInt(jokes.size());
         return jokes.get(randomJoke).toString();
     }

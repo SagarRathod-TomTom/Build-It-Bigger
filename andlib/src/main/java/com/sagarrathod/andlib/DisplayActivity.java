@@ -15,17 +15,25 @@ import butterknife.ButterKnife;
 
 /**
  * @author Sagar Rathod
- *
  * @version 1.0
+ *
+ * Displays the joke received in intent.
  *
  */
 public class DisplayActivity extends AppCompatActivity {
 
     @BindView(R2.id.jokes_text_view) TextView textView;
 
+    /**
+     * Inflates the layout and initializes the view with the
+     * data received in the intent.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_display);
 
         ActionBar actionBar = getSupportActionBar();
@@ -33,6 +41,7 @@ public class DisplayActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        // bind the views
         ButterKnife.bind(this);
 
         //initialize the view
@@ -40,19 +49,25 @@ public class DisplayActivity extends AppCompatActivity {
     }
 
     /**
-     * Initializes the view with intent data
+     * Initializes the view with intent data.
+     *
      * @param intent
      */
     private void init(Intent intent){
         if(intent != null) {
 
             String joke = intent.getStringExtra(Utils.INTENT_JOKE_EXTRA);
-            textView.setText(joke);
+            // check weather data is empty.
+            if(joke != null && !joke.isEmpty())
+                textView.setText(joke);
+            else
+                textView.setText(R.string.empty_joke_from_server);
         }
     }
 
     /**
-     *  Intent handler callback
+     *  Intent handler callback.
+     *
      * @param intent
      */
     @Override
@@ -61,6 +76,12 @@ public class DisplayActivity extends AppCompatActivity {
         init(intent);
     }
 
+    /**
+     * Handles up button action.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

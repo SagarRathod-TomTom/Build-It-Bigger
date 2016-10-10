@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">andlib</string>
+    <string name="empty_joke_from_server">"Not Received Anything from Sever"</string>
 </resources>

@@ -10,12 +10,24 @@ import android.view.MenuItem;
 import com.sagarrathod.andlib.DisplayActivity;
 import com.sagarrathod.commons.Utils;
 
+/**
+ *  @author Sagar Rathod
+ *  @version 1.0
+ *
+ *  Build it bigger app starter activity.
+ *
+ */
 public class MainActivity extends AppCompatActivity implements FragmentCallback,
         ResultCallbackListener{
 
     private EndpointsAsyncTask mEndpointsAsyncTask;
     private MainActivityFragment mMainActivityFragment;
 
+    /**
+     * Inflates the layout and initializes the fragment instance.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements FragmentCallback,
 
     }
 
+    /**
+     * Registers the fragment callback.
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -36,6 +51,12 @@ public class MainActivity extends AppCompatActivity implements FragmentCallback,
         }
     }
 
+    /**
+     * Inflates menu layout.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -43,6 +64,12 @@ public class MainActivity extends AppCompatActivity implements FragmentCallback,
         return true;
     }
 
+    /**
+     * Handles the menu item events.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -58,6 +85,12 @@ public class MainActivity extends AppCompatActivity implements FragmentCallback,
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Starts the display activity to show joke received from
+     * google cloud endpoint.
+     *
+     * @param response
+     */
     @Override
     public void resultCallback(String response) {
 
@@ -67,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements FragmentCallback,
         startActivity(intent);
     }
 
+    /**
+     * Creates the endpoint async task to fetch random joke
+     * from google cloud endpoint.
+     */
     @Override
     public void fragmentCallback() {
         mEndpointsAsyncTask = new EndpointsAsyncTask(this, mMainActivityFragment.mProgressBar);

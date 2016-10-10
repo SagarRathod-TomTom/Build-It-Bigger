@@ -1,7 +1,10 @@
 package com.sagarrathod.builditbigger;
 
 /**
- * Created by samsung on 08-Oct-2016.
+ * @author Sagar Rathod
+ * @version 1.0
+ *
+ * Result callback handler.
  */
 
 public interface ResultCallbackListener {

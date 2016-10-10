@@ -15,7 +15,11 @@ import butterknife.ButterKnife;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * @author Sagar Rathod
+ * @version 1.0
+ *
+ * Fragment for paid version.
+ *
  */
 public class MainActivityFragment extends Fragment implements View.OnClickListener{
 
@@ -27,6 +31,13 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
         // Required empty public constructor
     }
 
+    /**
+     * Inflates fragment layout and bind the views.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,16 +47,29 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
         return root;
     }
 
+    /**
+     * Registers the tell joke button click listener.
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mTellJokeButton.setOnClickListener(this);
     }
 
+    /**
+     * Setter method for mFragmentCallback.
+     *
+     * @param mFragmentCallback
+     */
     public void setFragmentCallback(FragmentCallback mFragmentCallback) {
         this.mFragmentCallback = mFragmentCallback;
     }
 
+    /**
+     * On click event handler for tell joke button.
+     * @param view
+     */
     @Override
     public void onClick(View v) {
         if(mFragmentCallback != null){
