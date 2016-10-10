@@ -49,15 +49,21 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
-        mInterstitialAd.loadAd(adRequest);
+        loadInterstitialAdRequest();
+
         mInterstitialAd.setAdListener(new AdListener() {
+
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
+
                 if(mFragmentCallback != null){
                     mFragmentCallback.fragmentCallback();
                 }
+
+                loadInterstitialAdRequest();
             }
+
         });
         return root;
     }
@@ -77,6 +83,17 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
 
         if(mInterstitialAd.isLoaded()){
             mInterstitialAd.show();
+        } else {
+            if(mFragmentCallback != null){
+                mFragmentCallback.fragmentCallback();
+            }
         }
+    }
+
+    private void loadInterstitialAdRequest(){
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mInterstitialAd.loadAd(adRequest);
     }
 }
