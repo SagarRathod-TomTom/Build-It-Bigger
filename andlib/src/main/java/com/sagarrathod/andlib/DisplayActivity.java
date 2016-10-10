@@ -15,13 +15,13 @@ import butterknife.ButterKnife;
 
 /**
  * @author Sagar Rathod
+ *
  * @version 1.0
  *
  */
 public class DisplayActivity extends AppCompatActivity {
 
-    @BindView(R2.id.jokes_text_view)
-    TextView textView;
+    @BindView(R2.id.jokes_text_view) TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
