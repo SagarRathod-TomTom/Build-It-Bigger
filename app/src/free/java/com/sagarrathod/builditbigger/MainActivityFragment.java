@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -25,6 +26,7 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
 
     @BindView(R.id.tell_joke_button) Button mTellJokeButton;
     @BindView(R.id.adView)  AdView mAdView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
     @BindString(R.string.interstitial_ad_unit_id) String mInterstitialAdUnitId;
 
     private InterstitialAd mInterstitialAd;

@@ -1,6 +1,8 @@
 package com.sagarrathod.builditbigger;
 
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.samsung.builditbigger.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -19,9 +21,18 @@ public class EndpointsAsyncTask extends AsyncTask<String,Void, String> {
     private final String LOG_TAG = EndpointsAsyncTask.class.getSimpleName();
     private static MyApi myApiService = null;
     private ResultCallbackListener resultCallbackListener;
+    private ProgressBar mProgressBar;
 
-    public EndpointsAsyncTask(ResultCallbackListener resultCallbackListener) {
+    public EndpointsAsyncTask(ResultCallbackListener resultCallbackListener,
+                              ProgressBar progressBar) {
         this.resultCallbackListener = resultCallbackListener;
+        this.mProgressBar = progressBar;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -55,7 +66,7 @@ public class EndpointsAsyncTask extends AsyncTask<String,Void, String> {
 
     @Override
     protected void onPostExecute(String jokeText) {
-
+        mProgressBar.setVisibility(View.GONE);
         resultCallbackListener.resultCallback(jokeText);
     }
 

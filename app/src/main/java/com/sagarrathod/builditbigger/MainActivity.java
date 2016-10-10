@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements FragmentCallback,
 
     @Override
     public void fragmentCallback() {
-        mEndpointsAsyncTask = new EndpointsAsyncTask(this);
+        mEndpointsAsyncTask = new EndpointsAsyncTask(this, mMainActivityFragment.mProgressBar);
         mEndpointsAsyncTask.execute("joke");
     }
 }

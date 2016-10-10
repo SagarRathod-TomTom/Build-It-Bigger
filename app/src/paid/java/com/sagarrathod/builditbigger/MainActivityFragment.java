@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +21,7 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
 
     private FragmentCallback mFragmentCallback;
     @BindView(R.id.tell_joke_button) Button mTellJokeButton;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
     public MainActivityFragment() {
         // Required empty public constructor
